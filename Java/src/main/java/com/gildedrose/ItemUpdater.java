@@ -1,6 +1,11 @@
 package com.gildedrose;
 
 public class ItemUpdater {
+    public static final int ETC_DOUBLE_QUALITY_THRESHOLD = 10;
+    public static final int ETC_TREBLE_QUALITY_THRESHOLD = 5;
+
+    public static final int ITEM_MIN_QUALITY = 0;
+    public static final int ITEM_MAX_QUALITY = 50;
     Item item;
 
     public ItemUpdater(Item newItem) {
@@ -16,6 +21,8 @@ public class ItemUpdater {
 
         item.sellIn = item.sellIn - 1;
 
+        // Ideally I'd have subclassed Item to include an updateQuality method appropriate to each type, but
+        // Goblins ruin everything.
         if (item.name.equals("Aged Brie")) {
             updateAgedBrieQuality();
 
@@ -48,11 +55,11 @@ public class ItemUpdater {
         } else {
             increaseItemQuality();
 
-            if (item.sellIn < 10) {
+            if (item.sellIn < ETC_DOUBLE_QUALITY_THRESHOLD) {
                 increaseItemQuality();
             }
 
-            if (item.sellIn < 5) {
+            if (item.sellIn < ETC_TREBLE_QUALITY_THRESHOLD) {
                 increaseItemQuality();
             }
         }
@@ -66,13 +73,13 @@ public class ItemUpdater {
     }
 
     private void increaseItemQuality() {
-        if (item.quality < 50) {
+        if (item.quality < ITEM_MAX_QUALITY) {
             item.quality++;
         }
     }
 
     private void decreaseItemQuality() {
-        if (item.quality > 0) {
+        if (item.quality > ITEM_MIN_QUALITY) {
             item.quality--;
         }
     }
