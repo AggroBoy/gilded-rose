@@ -21,7 +21,7 @@ class GildedRose {
 
     private void updateQualityForItem(Item item) {
 
-        // Special case fot Sulfuras; do nothing
+        // Special case for Sulfuras; do nothing
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
