@@ -67,7 +67,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void testChieftans() {
+    public void testChieftains() {
         Item[] items = new Item[]{
                 new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10)
         };
