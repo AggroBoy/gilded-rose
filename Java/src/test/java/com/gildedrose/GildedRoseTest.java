@@ -83,19 +83,13 @@ public class GildedRoseTest {
         app.updateQuality();
         assertItemEquals(items[0], 9, 14);
 
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
+        app.updateQuality(5);
         assertItemEquals(items[0], 4, 25);
 
         app.updateQuality();
         assertItemEquals(items[0], 3, 28);
 
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
+        app.updateQuality(3);
         assertItemEquals(items[0], 0, 37);
 
         app.updateQuality();
