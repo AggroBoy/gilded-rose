@@ -76,5 +76,4 @@ public class ItemUpdater {
             item.quality--;
         }
     }
-
 }
