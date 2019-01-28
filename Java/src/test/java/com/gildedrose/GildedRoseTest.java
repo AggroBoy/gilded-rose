@@ -24,5 +24,17 @@ public class GildedRoseTest {
         assertEquals(80, items[2].quality);
         assertEquals(10, items[2].sellIn);
     }
+    
+    @Test
+    public void testNormalItem() {
+        Item[] items = new Item[]{
+                new Item("Happy Fun Rock", 10, 20),
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(9, items[0].sellIn);
+        assertEquals(19, items[0].quality);
+    }
 
 }
