@@ -20,38 +20,52 @@ class GildedRose {
     }
 
     private void updateQualityForItem(Item item) {
+
+        // Special case fot Sulfuras; do nothing
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
-
-        } else if (item.name.equals("Aged Brie")) {
-            increaseItemQuality(item);
-
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            increaseItemQuality(item);
-            if (item.sellIn < 11) {
-                increaseItemQuality(item);
-            }
-
-            if (item.sellIn < 6) {
-                increaseItemQuality(item);
-            }
-            
-        } else {
-            decreaseItemQuality(item);
         }
 
         item.sellIn = item.sellIn - 1;
 
+        if (item.name.equals("Aged Brie")) {
+            updateAgedBrieQuality(item);
+
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            updateEtcPassQuality(item);
+
+        } else {
+            updateNormalItemQuality(item);
+        }
+    }
+
+    private void updateAgedBrieQuality(Item item) {
+        increaseItemQuality(item);
         if (item.sellIn < 0) {
-            if (item.name.equals("Aged Brie")) {
+            increaseItemQuality(item);
+        }
+    }
+
+    private void updateEtcPassQuality(Item item) {
+        if (item.sellIn < 0) {
+            item.quality = 0;
+        } else {
+            increaseItemQuality(item);
+
+            if (item.sellIn < 10) {
                 increaseItemQuality(item);
-            } else {
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    item.quality = 0;
-                } else {
-                    decreaseItemQuality(item);
-                }
             }
+
+            if (item.sellIn < 5) {
+                increaseItemQuality(item);
+            }
+        }
+    }
+
+    private void updateNormalItemQuality(Item item) {
+        decreaseItemQuality(item);
+        if (item.sellIn < 0) {
+            decreaseItemQuality(item);
         }
     }
 
