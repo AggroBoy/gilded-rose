@@ -15,77 +15,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            updateQualityForItem(item);
+            new ItemUpdater(item).updateQuality();
         }
     }
 
-    private void updateQualityForItem(Item item) {
-
-        // Special case for Sulfuras; do nothing
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
-
-        item.sellIn = item.sellIn - 1;
-
-        if (item.name.equals("Aged Brie")) {
-            updateAgedBrieQuality(item);
-
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            updateEtcPassQuality(item);
-
-        } else if (item.name.startsWith("Conjured ")) {
-            updateConjuredItemQuality(item);
-
-        } else {
-            updateNormalItemQuality(item);
-        }
-    }
-
-    private void updateConjuredItemQuality(Item item) {
-        updateNormalItemQuality(item);
-        updateNormalItemQuality(item);
-    }
-
-    private void updateAgedBrieQuality(Item item) {
-        increaseItemQuality(item);
-        if (item.sellIn < 0) {
-            increaseItemQuality(item);
-        }
-    }
-
-    private void updateEtcPassQuality(Item item) {
-        if (item.sellIn < 0) {
-            item.quality = 0;
-        } else {
-            increaseItemQuality(item);
-
-            if (item.sellIn < 10) {
-                increaseItemQuality(item);
-            }
-
-            if (item.sellIn < 5) {
-                increaseItemQuality(item);
-            }
-        }
-    }
-
-    private void updateNormalItemQuality(Item item) {
-        decreaseItemQuality(item);
-        if (item.sellIn < 0) {
-            decreaseItemQuality(item);
-        }
-    }
-
-    private void increaseItemQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality++;
-        }
-    }
-
-    private void decreaseItemQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality--;
-        }
-    }
 }
