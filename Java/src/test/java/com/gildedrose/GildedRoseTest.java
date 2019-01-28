@@ -7,6 +7,11 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 
+    private void assertItemEquals(Item item, int sellIn, int quality) {
+        assertEquals(quality, item.quality);
+        assertEquals(sellIn, item.sellIn);
+    }
+
     @Test
     public void testSulfuras() {
         Item[] items = new Item[]{
@@ -17,12 +22,9 @@ public class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
-        assertEquals(80, items[0].quality);
-        assertEquals(0, items[0].sellIn);
-        assertEquals(80, items[1].quality);
-        assertEquals(-1, items[1].sellIn);
-        assertEquals(80, items[2].quality);
-        assertEquals(10, items[2].sellIn);
+        assertItemEquals(items[0], 0, 80);
+        assertItemEquals(items[1], -1, 80);
+        assertItemEquals(items[2], 10, 80);
     }
 
     @Test
@@ -35,20 +37,14 @@ public class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
-        assertEquals(9, items[0].sellIn);
-        assertEquals(19, items[0].quality);
-        assertEquals(0, items[1].sellIn);
-        assertEquals(4, items[1].quality);
-        assertEquals(-1, items[2].sellIn);
-        assertEquals(8, items[2].quality);
+        assertItemEquals(items[0], 9, 19);
+        assertItemEquals(items[1], 0, 4);
+        assertItemEquals(items[2], -1, 8);
 
         app.updateQuality();
-        assertEquals(8, items[0].sellIn);
-        assertEquals(18, items[0].quality);
-        assertEquals(-1, items[1].sellIn);
-        assertEquals(2, items[1].quality);
-        assertEquals(-2, items[2].sellIn);
-        assertEquals(6, items[2].quality);
+        assertItemEquals(items[0], 8, 18);
+        assertItemEquals(items[1], -1, 2);
+        assertItemEquals(items[2], -2, 6);
     }
 
     @Test
@@ -60,18 +56,14 @@ public class GildedRoseTest {
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
-        assertEquals(1, items[0].sellIn);
-        assertEquals(11, items[0].quality);
+        assertItemEquals(items[0], 1, 11);
+
 
         app.updateQuality();
-        assertEquals(0, items[0].sellIn);
-        assertEquals(12, items[0].quality);
+        assertItemEquals(items[0], 0, 12);
 
         app.updateQuality();
-        assertEquals(-1, items[0].sellIn);
-        assertEquals(14, items[0].quality);
-
-
+        assertItemEquals(items[0], -1, 14);
     }
 
     @Test
@@ -83,37 +75,30 @@ public class GildedRoseTest {
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
-        assertEquals(11, items[0].sellIn);
-        assertEquals(11, items[0].quality);
+        assertItemEquals(items[0], 11, 11);
 
         app.updateQuality();
-        assertEquals(10, items[0].sellIn);
-        assertEquals(12, items[0].quality);
+        assertItemEquals(items[0], 10, 12);
 
         app.updateQuality();
-        assertEquals(9, items[0].sellIn);
-        assertEquals(14, items[0].quality);
+        assertItemEquals(items[0], 9, 14);
 
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
-        assertEquals(4, items[0].sellIn);
-        assertEquals(25, items[0].quality);
+        assertItemEquals(items[0], 4, 25);
 
         app.updateQuality();
-        assertEquals(3, items[0].sellIn);
-        assertEquals(28, items[0].quality);
+        assertItemEquals(items[0], 3, 28);
 
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
-        assertEquals(0, items[0].sellIn);
-        assertEquals(37, items[0].quality);
+        assertItemEquals(items[0], 0, 37);
 
         app.updateQuality();
-        assertEquals(-1, items[0].sellIn);
-        assertEquals(0, items[0].quality);
+        assertItemEquals(items[0], -1, 0);
     }
 }
