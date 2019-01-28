@@ -51,4 +51,27 @@ public class GildedRoseTest {
         assertEquals(6, items[2].quality);
     }
 
+    @Test
+    public void testBrie() {
+        Item[] items = new Item[]{
+                new Item("Aged Brie", 2, 10)
+        };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+        assertEquals(1, items[0].sellIn);
+        assertEquals(11, items[0].quality);
+
+        app.updateQuality();
+        assertEquals(0, items[0].sellIn);
+        assertEquals(12, items[0].quality);
+
+        app.updateQuality();
+        assertEquals(-1, items[0].sellIn);
+        assertEquals(14, items[0].quality);
+
+
+    }
+
 }
