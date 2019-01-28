@@ -34,9 +34,17 @@ class GildedRose {
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             updateEtcPassQuality(item);
 
+        } else if (item.name.startsWith("Conjured ")) {
+            updateConjuredItemQuality(item);
+
         } else {
             updateNormalItemQuality(item);
         }
+    }
+
+    private void updateConjuredItemQuality(Item item) {
+        updateNormalItemQuality(item);
+        updateNormalItemQuality(item);
     }
 
     private void updateAgedBrieQuality(Item item) {

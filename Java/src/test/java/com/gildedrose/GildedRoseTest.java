@@ -110,4 +110,30 @@ public class GildedRoseTest {
         assertItemEquals(items[0], -1, 0);
         assertItemEquals(items[1], -1, 0);
     }
+
+    @Test
+    public void testConjured() {
+        Item[] items = new Item[]{
+                new Item("Conjured Mana Cake", 1, 10),
+                new Item("Conjured Mana Strudel", 10, 50)
+        };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+        assertItemEquals(items[0], 0, 8);
+        assertItemEquals(items[1], 9, 48);
+
+        app.updateQuality();
+        assertItemEquals(items[0], -1, 4);
+        assertItemEquals(items[1], 8, 46);
+
+        app.updateQuality();
+        assertItemEquals(items[0], -2, 0);
+        assertItemEquals(items[1], 7, 44);
+
+        app.updateQuality();
+        assertItemEquals(items[0], -3, 0);
+        assertItemEquals(items[1], 6, 42);
+    }
 }
